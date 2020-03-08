@@ -1,6 +1,9 @@
 #include<Servo.h>
 int motor1pin=9;
 //int motor2pin=5;
+int flag =0;
+int potvalue;
+int i;
 Servo motor1;
 //Servo motor2;
 void setup() {
@@ -22,36 +25,42 @@ void setup() {
   
   motor1.attach(motor1pin,1000,2000);
   Serial.begin(9600);
+  for (i=40;i<80;i+=1){
+    potvalue=i;
+    potvalue=map(potvalue,42,100,0,180);
+    //motor2.write(potvalue)
+      motor1.write(potvalue);
+      delay(1000);
+  }    
 //  //motor2.attach(motor2pin);
  // delay(10);
   //motor1.write(40); //to arm the esc
 //  //motor2.write(40);
 }
 //int i=0;
-int flag =0;
-int potvalue;
-int i;
+
 void loop() {
+  // motor1.write(potvalue); 
   
-  //motor1.write(40);
-  if(flag==0)
-  {
-  for (i=40;i<50;i+=1){
-    potvalue=i;
-    potvalue=map(potvalue,42,100,0,180);
-    //motor2.write(potvalue)
-      motor1.write(potvalue);
-      delay(1000);
-      if(i>48){
-        flag=1;
-        break;
-      }
-      }
-      //motor1.write(potvalue);
-  }
-  if(flag==1){
-    motor1.write(potvalue); 
-  }
+//  //motor1.write(40);
+//  if(flag==0)
+//  {
+//  for (i=40;i<50;i+=1){
+//    potvalue=i;
+//    potvalue=map(potvalue,42,100,0,180);
+//    //motor2.write(potvalue)
+//      motor1.write(potvalue);
+//      delay(1000);
+//      if(i>48){
+//        flag=1;
+//        break;
+//      }
+//      }
+//      //motor1.write(potvalue);
+//  }
+//  if(flag==1){
+//    motor1.write(potvalue); 
+//  }
 
 
       
